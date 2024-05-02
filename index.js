@@ -19,6 +19,12 @@ function getAllTypeDefinitions(entryFile, max_depth) {
     return sourceFile.fileName === rootFile;
   });
 
+  // Add the root files to the visited and definition files
+  for (const sourceFile of queue) {
+    visitedFiles.add(sourceFile.fileName);
+    definitionFiles.add(sourceFile.fileName);
+  }
+
   // Used to keep track of the depth
   let nextQueue = [];
   let currentDepth = 1;
